@@ -1,0 +1,55 @@
+# =============================================================================
+# Local AI Business Advisor - Python 3.10
+#
+# Versioning strategy: "compatible release" pins (~=) allow patch updates
+# (bug/security fixes) but never a minor bump that could break the LangChain /
+# Pydantic / ChromaDB combination, which is the most fragile part of this stack.
+# For fully reproducible deployments, generate a lock file from a working
+# environment:  pip freeze > requirements.lock
+# =============================================================================
+
+# --- Backend (API layer) -----------------------------------------------------
+fastapi~=0.115.0
+uvicorn[standard]~=0.32.0
+# Required by FastAPI for file uploads (PDF documents).
+python-multipart~=0.0.12
+
+# --- Configuration & validation ----------------------------------------------
+# Pydantic v2 is required by FastAPI 0.115 and langchain-core 0.3.
+pydantic~=2.9.0
+pydantic-settings~=2.6.0
+python-dotenv~=1.0.1
+
+# --- Database (SQLite via SQLAlchemy 2.0 ORM) --------------------------------
+SQLAlchemy~=2.0.36
+
+# --- Frontend ----------------------------------------------------------------
+streamlit~=1.40.0
+# Used by the Streamlit UI to talk to the FastAPI backend.
+httpx~=0.27.2
+
+# --- LLM orchestration (LangChain 0.3.x line, supports Python 3.9+) ----------
+langchain~=0.3.9
+langchain-core~=0.3.21
+langchain-community~=0.3.9
+langchain-text-splitters~=0.3.2
+# Official Ollama integration (chat + embeddings).
+langchain-ollama~=0.2.1
+# Official Chroma integration.
+langchain-chroma~=0.1.4
+
+# --- Vector store ------------------------------------------------------------
+chromadb~=0.5.20
+
+# --- Data analysis & document parsing ----------------------------------------
+# numpy is capped below 2.0 because chromadb 0.5.x and some pandas wheels
+# have historically broken against NumPy 2 ABI changes.
+numpy>=1.26,<2.0
+pandas~=2.2.3
+PyMuPDF~=1.24.14
+
+# --- Testing & code quality (move to requirements-dev.txt later if desired) --
+pytest~=8.3.3
+pytest-asyncio~=0.24.0
+pytest-cov~=6.0.0
+ruff~=0.7.4
