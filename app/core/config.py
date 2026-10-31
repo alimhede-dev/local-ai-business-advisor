@@ -105,6 +105,14 @@ class Settings(BaseSettings):
     rag_num_paraphrases: int = Field(default=2, ge=0, le=5)
     rag_translate_arabic_queries: bool = True
 
+    # --- Conversation memory -------------------------------------------------
+    # Recent messages kept verbatim in the prompt (estimated tokens, see memory.py).
+    memory_max_buffer_tokens: int = Field(default=1500, ge=200, le=16000)
+    memory_summary_max_words: int = Field(default=200, ge=50, le=1000)
+    # How many previous sessions' digests are loaded as long-term memory (0 = off).
+    memory_cross_session_limit: int = Field(default=3, ge=0, le=10)
+    memory_long_term_max_chars: int = Field(default=3000, ge=200)
+
     # ------------------------------------------------------------------ #
     # Validators
     # ------------------------------------------------------------------ #
