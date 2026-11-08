@@ -1,0 +1,43 @@
+﻿# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+myproject_env/
+
+# Data & Databases
+data/*.db
+data/*.pdf
+data/chroma/
+data/uploads/
+
+# Environment
+.env
+
+# IDE
+.vscode/
+.idea/
+
+# Virtual environments (large, must be excluded)
+training_env/
+unsloth_env/
+unsloth_py313_env/
+myproject_env/
+unsloth_compiled_cache/
+
+# Python cache
+.pytest_cache/
+*.pyc
+
+# Zip files (not needed in repo)
+*.zip
+
+# Results (can be regenerated)
+evaluation/smoke_test/
+evaluation/smoke_test_2048/
+evaluation/results/
+
+# Large model/data files
+*.gguf
+*.bin
+*.db
